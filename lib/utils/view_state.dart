@@ -1,0 +1,1 @@
+enum ViewState{ Done, Busy, Failed }
