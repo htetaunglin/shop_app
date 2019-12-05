@@ -20,7 +20,11 @@ class CategoryListViewModel extends BaseModel {
   }
 
   void _stateDone(value) {
-    categoryList = value;
-    notifyState(ViewState.Done);
+    if (value != null) {
+      categoryList = value;
+      notifyState(ViewState.Done);
+    } else {
+      notifyState(ViewState.Failed);
+    }
   }
 }

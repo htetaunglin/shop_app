@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:shop_app/category_list/category_list_service.dart';
+import 'package:shop_app/item_list/item_list_service.dart';
 import 'package:shop_app/utils/built_value_converter.dart';
 
 class ShopApiClient {
@@ -12,7 +13,8 @@ class ShopApiClient {
         baseUrl: 'http://139.59.101.3:3050',
         converter: BuiltValueConverter(),
         services: [
-          CategoryListService.getServiceOnly()
+          CategoryListService.getServiceOnly(),
+          ItemListService.getServiceOnly()
         ],
         interceptors: [
           HttpLoggingInterceptor(),

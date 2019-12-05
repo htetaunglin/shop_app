@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/base_view.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:shop_app/category_list/category_list_viewmodel.dart';
+import 'package:shop_app/item_list/item_list_page_argument.dart';
 import 'package:shop_app/models/categories.dart';
 import 'package:shop_app/models/category.dart';
+import 'package:shop_app/router.dart';
 import 'package:shop_app/utils/view_state.dart';
 import 'package:shop_app/widgets/loading_widget.dart';
 
@@ -50,9 +52,31 @@ class CategoryListView extends StatelessWidget {
           return ListTile(
             title: Text(category.category),
             leading: CircleAvatar(
-                backgroundColor: Colors.grey,
-                backgroundImage:
-                    NetworkImage("http://139.59.101.3:3050/" + category.image)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: new DecorationImage(
+                        fit: BoxFit.fill,
+                        image: new NetworkImage(
+                            "http://139.59.101.3:3050/${category.image}")),
+                  ),
+                ),
+                backgroundImage: AssetImage('images/Square@3x.png')),
+            onTap: () {
+              Navigator.push(
+                context,
+                Router.generateRoute(
+                  RouteSettings(
+                    name: '/item_list',
+                    arguments: ArgumentsForItemListPage(
+                      cityId: 1,
+                      categoryId: category.id,
+                      categoryName: category.category,
+                    ),
+                  ),
+                ),
+              );
+            },
           );
         },
       );
